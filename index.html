@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oliver Smith</title>
+  <style>
+    html, body{
+      margin: 0;
+      padding: 0;
+      font-size: 27px;
+      font-family: Arial, Helvetica, sans-serif;
+      
+      background: #FFFFFF;    
+      overflow: hidden; 
+    }
+    .info{
+      box-sizing: border-box;
+      height: 100vh;
+      padding: 27px;      
+      line-height: 1.2rem; 
+      opacity: 0;    
+      background-color: #000000;
+      color: #ffffff; 
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+      .info div{
+        max-width: 27.8rem; 
+      }
+      .info h1{
+        display: inline;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+      .info p{
+        display: inline;
+      }
+      .info a{
+        color: #ff0000;
+      }
+
+      .loaders{
+        position: fixed;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 105vw;
+        height: calc(100vh + 5vw);
+        transform: translateX(-2.5vw) translateY(-2.5vw);
+      }
+        .loaders span{
+          display: block;
+          float: left;
+          width: 21px;
+          height: 21px;
+          margin: 3px;          
+          background-size: contain;
+          background-repeat: no-repeat;
+          image-rendering: crisp-edges;
+          background-position: center;
+        }
+
+      .info-visible .info{
+        opacity: 1;
+        pointer-events: all;
+      }
+
+        @media (prefers-reduced-motion) {
+          .loaders{
+            display: none;
+          }
+          .info{
+            opacity: 1;
+            pointer-events: all;
+          }
+          .question{
+            display: none;
+          }
+        }
+  </style>
+</head>
+<body>
+  <article class="info">
+    <div>
+      <h1>Oliver Smith</h1>
+      <p>is an artist. He co-founded artistic duo <a href="https://dmstfctn.net" target="_blank">dmstfctn</a> in 2017, and has been course leader for <a href="https://www.arts.ac.uk/subjects/animation-interactive-film-and-sound/postgraduate/ma-interaction-design-lcc">MA Interaction Design</a> at the London College of Communication since 2023</p>    
+    </div>
+  </article>
+  <!--<nav class="question"></nav>-->
+  <div class="loaders"></div>
+  <script>
+    const $loaders = document.querySelector('.loaders');
+    const $info = document.querySelector('.info');
+	  const $linx = [...document.querySelectorAll('a')];
+
+    const possibleLoaders = 30;    
+    let gridCount = 0;
+    const loaderWidth = 21;
+    const run = function(){          
+      const xCount = Math.floor( window.innerWidth / loaderWidth );            
+      const w = Math.ceil(window.innerWidth / xCount);
+      const h = w;
+      const yCount = Math.ceil(window.innerHeight / h) + 1;
+      const total = xCount * yCount;
+      if( total < gridCount ){
+        return;
+      }      
+      const newCount = total - gridCount;
+      console.log(newCount, 'new' );
+      for( let i = 0; i < newCount; i++ ){        
+        const rand = Math.floor( Math.random() * possibleLoaders );
+        const $loader = document.createElement('span');
+        $loader.style.backgroundImage =`url(loader/load-${rand}.gif)`;
+        $loaders.appendChild( $loader );
+      }
+      gridCount = total;
+    }
+    
+    window.addEventListener('resize', run );
+    run();
+
+    $linx.forEach(function($a){
+      $a.addEventListener('click', function(e){
+          e.stopPropagation();
+      })
+    })
+
+    document.body.addEventListener('click', function(e){
+      document.body.classList.toggle('info-visible')
+    });
+  </script>
+</body>
+</html>
