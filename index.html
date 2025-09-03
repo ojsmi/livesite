@@ -10,7 +10,7 @@
     html, body{
       margin: 0;
       padding: 0;
-      font-size: 18px;
+      font-size: 16px;
       font-family: 'Inter', Arial, Helvetica, sans-serif;      
       background: #FFFFFF;    
       overflow: hidden; 
@@ -49,8 +49,6 @@
         left: 0;
         width: 105vw;
         height: calc(100vh + 5vw);
-        transform: translateX(-2.5vw) translateY(-2.5vw);
-        
       }
         .loaders span{
           display: block;
@@ -70,13 +68,16 @@
       }
       
         @media (min-width: 1024px){
+          .loaders{
+            transform: translateX(-2.5vw) translateY(-2.5vw);
+          }
           html, body{
              font-size: 24px;
           }
         }
         @media (prefers-reduced-motion) {
           .loaders{
-            background-color: blue;
+            background-color: blue;            
           }
           .loaders span{
             display: none;
