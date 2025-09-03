@@ -4,45 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oliver Smith</title>
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <style>
     html, body{
       margin: 0;
       padding: 0;
-      font-size: 27px;
-      font-family: Arial, Helvetica, sans-serif;
-      
+      font-size: 18px;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;      
       background: #FFFFFF;    
       overflow: hidden; 
     }
     .info{
+      margin-left: 3rem;
       box-sizing: border-box;
       height: 100vh;
-      padding: 27px;      
-      line-height: 1.2rem; 
-      opacity: 0;    
-      background-color: #000000;
-      color: #ffffff; 
+      padding: 0.6rem 0.8rem;      
+      line-height: 1.2rem;   
+      background-color: #ffffff;
+      color: blue; 
       position: relative;
       z-index: 1;
-      pointer-events: none;
-      mix-blend-mode: multiply;
+      max-width: 32rem;
     }
       .info div{
-        max-width: 27.8rem; 
+        
       }
-      .info h1{
+      .info .first-para h1{
         display: inline;
         font-size: 1rem;
         font-weight: normal;
       }
-      .info p{
+      .info .first-para p{
         display: inline;
       }
       .info a{
-        color: #ff0000;
+        color: #FF00FF;
       }
 
-      .loaders{
+      .loaders{        
         position: fixed;
         z-index: 0;
         top: 0;
@@ -50,44 +50,59 @@
         width: 105vw;
         height: calc(100vh + 5vw);
         transform: translateX(-2.5vw) translateY(-2.5vw);
+        
       }
         .loaders span{
           display: block;
           float: left;
-          width: 21px;
-          height: 21px;
-          margin: 3px;          
+          width: 12px;
+          height: 12px;
+          margin: 2px;           
           background-size: contain;
           background-repeat: no-repeat;
           image-rendering: crisp-edges;
-          background-position: center;
+          background-position: center;          
         }
 
       .info-visible .info{
         opacity: 1;
         pointer-events: all;
       }
-
+      
+        @media (min-width: 1024px){
+          html, body{
+             font-size: 24px;
+          }
+        }
         @media (prefers-reduced-motion) {
           .loaders{
-            display: none;
+            background-color: blue;
           }
-          .info{
-            opacity: 1;
-            pointer-events: all;
-          }
-          .question{
+          .loaders span{
             display: none;
+
           }
         }
   </style>
 </head>
 <body>
   <article class="info">
-    <div>
+    <div class="first-para">
       <h1>Oliver Smith</h1>
-      <p>is an artist. He co-founded artistic duo <a href="https://dmstfctn.net" target="_blank">dmstfctn</a> in 2017, and has been course leader for <a href="https://www.arts.ac.uk/subjects/animation-interactive-film-and-sound/postgraduate/ma-interaction-design-lcc">MA Interaction Design</a> at the London College of Communication since 2023</p>    
+      <p>is a London based artist, designer and developer, and educator obsessed with the long tail of cybernetics.</p>    
     </div>
+    <p>
+      He performs and exhibits globally with <a href="https://dmstfctn.net" style="">dmstfctn</a>, the artist duo he co-founded with Francesco Tacchini in 2017, including at Serpentine, Berghain, HKW, Rhizome, Unsound, CTM and transmediale. <!--They are n-space residents at Somerset House.-->
+    </p>
+    <p>
+      He is a digital designer and developer with 15+ years of experience working with clients including artists, designers, fashion brands, universities, and cultural institutions.
+    </p>
+    <p>
+      Oliver has over a decade of experience as an educator at globally leading art and design institutions. He has lectured, written and developed curricula, and managed academic teams, most recently as course leader for MA Interaction Design at the University of the Arts London.
+    </p>
+    <br>
+    <!-- <a href="mailto:olvrsmi@gmail.com">email</a> -->
+    <a target="_blank" href="https://docs.google.com/document/d/1qh86TPA5eQ_NocBfbfFmiGZa6wkGd7BoTDikMQ_7noQ/export?format=pdf">CV</a>    
   </article>
   <!--<nav class="question"></nav>-->
   <div class="loaders"></div>
@@ -98,7 +113,7 @@
 
     const possibleLoaders = 30;    
     let gridCount = 0;
-    const loaderWidth = 21;
+    const loaderWidth = 14;
     const run = function(){          
       const xCount = Math.floor( window.innerWidth / loaderWidth );            
       const w = Math.ceil(window.innerWidth / xCount);
